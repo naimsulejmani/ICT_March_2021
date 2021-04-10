@@ -88,6 +88,10 @@ public class FacebookAccount {
     }
 
     public void setBirthdate(LocalDate birthdate) {
+        if (birthdate.getYear() > LocalDate.now().getYear()) {
+            System.out.println("Nuk mundesh me le pa ardh vit!!!");
+            return;
+        }
         this.birthdate = birthdate;
     }
 
@@ -95,8 +99,11 @@ public class FacebookAccount {
         return gender;
     }
 
+    //= eshte assignment operatori i cili merr vlere
+    // == operatori i krahasimit -> true / false
     public void setGender(char gender) {
-        this.gender = gender;
+        if (gender == 'M' || gender == 'F' || gender == 'm' || gender == 'f')
+            this.gender = gender;
     }
 
     public void printAccount() {

@@ -4,6 +4,14 @@ import java.time.LocalDate;
 
 public class FacebookAccountTest {
     public static void main(String[] args) {
+
+        String emri1 = "Besnik";
+        String emri2 = "Anita";
+
+        System.out.println(emri1.compareTo(emri2));
+        System.out.println(emri2.compareTo(emri1));
+        System.out.println(emri2.compareTo("Besnik "));
+
         FacebookAccount fbBesnikMazreku = new FacebookAccount();
         FacebookAccount fbEdisonBoqaj = new FacebookAccount();
         FacebookAccount fbElfeteTotaj = new FacebookAccount();
@@ -34,3 +42,4 @@ public class FacebookAccountTest {
         fbElfeteTotaj.printAccount();
     }
 }
+
