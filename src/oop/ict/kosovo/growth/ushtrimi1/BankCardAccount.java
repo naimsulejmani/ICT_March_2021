@@ -85,7 +85,53 @@ public class BankCardAccount {
             return;
         }
         this.pin = newPin;
+    }
 
+
+    //kur shtojme para ne ATM Machine
+    public double deposit(double deposit) {
+        //nuk ka kontrolle nese ben deposit negative
+        System.out.println("Balanci eshte " + this.balance);
+        this.balance = this.balance + deposit;
+        System.out.println("Balanci pas deponimit eshte " + this.balance);
+        return this.balance;
+    }
+
+    public double withdraw (double withdraw) {
+        if (withdraw < 0.0) {
+            System.out.println("Shuma e terheqjes duhet te jete me e madhe se 0.0!");
+        }
+        if (this.balance < 0.0) {
+            System.out.println("Fonde te pamjaftueshme!");
+        } else
+            System.out.println("Shuma e terhequr eshte " + withdraw);
+        //if(balanace-withdraw<0)
+
+        double currentBalance = this.balance - withdraw;
+        System.out.println("Balanci i mbetur eshte " + currentBalance);
+        this.balance = currentBalance;
+        return currentBalance;
+    }
+
+
+
+    public double checkBalance() {
+        System.out.println("Balanci eshte " + this.balance);
+        return this.balance;
+    }
+
+    public String printBankCardAccount(BankCardAccount bankCardAccount) {
+        String print = bankCardAccount.accountNumber + " " +
+                bankCardAccount.cardNumber + " " +
+                bankCardAccount.holderName + " " +
+                bankCardAccount.holderSurname + " " +
+                bankCardAccount.month + " " +
+                bankCardAccount.year + " " +
+                bankCardAccount.securityCode + " " +
+                bankCardAccount.cardType + " " +
+                bankCardAccount.bankName;
+        System.out.println(print);
+        return print;
     }
 
 }

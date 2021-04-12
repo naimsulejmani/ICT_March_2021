@@ -7,6 +7,12 @@ public class BankTest {
                 444411112222333l, "Sabrije", "Hulaj", 12, 2023, 123,
                 "Debit", "ICT BANK");
 
+
+        hulajAccount.deposit(200);
+        hulajAccount.deposit(300);
+        hulajAccount.withdraw(100);
+
+        System.out.println(hulajAccount.getBalance());
         System.out.println(hulajAccount.getPin());
 
     }
