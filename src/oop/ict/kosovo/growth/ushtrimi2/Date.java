@@ -7,6 +7,8 @@ public class Date {
     //Konstruktoret -> menyrat e krijimit te objektit te dates sone
     public Date() {
         this(1970, 1, 1);
+        //ruaj naj log
+        //komuniko me databaze
 //        month = day = 1;
 //        year = 1970;
         //default konsturkotir
@@ -46,6 +48,25 @@ public class Date {
 
 
     public void print() {
+        //d-digits, s-string, f-float(decimal)
         System.out.printf("%d.%d.%d%n", day, month, year);
+        //System.out.println(day+"."+month+"."+year);
+    }
+
+    public int getDay() {
+        return day;
+    }
+
+    public int getMonth() {
+        return month;
+    }
+
+    public int getYear() {
+        return year;
+    }
+
+    public boolean isGreaterDate(Date otherDate) {
+        if(year> otherDate.getYear()) return true;
+        return false;
     }
 }

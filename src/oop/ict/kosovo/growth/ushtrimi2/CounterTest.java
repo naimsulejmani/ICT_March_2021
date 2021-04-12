@@ -4,12 +4,23 @@ public class CounterTest {
     public static void main(String[] args) {
         Counter x = new Counter();
         Counter y = new Counter();
+        System.out.println(x == y); // kur i krahasojme objetet rregull eshte me perdore metoden equals
+        //compareTo
+
+//        String a ="Naim";
+//        String b = "Filan";
+//        a.equals(b);
         x.increment(); //1
-        y=x; //1
+        y = x; //1
+//adresen e njejte ne memorie, i kan vlerat e njejta, edhe implementimi i equal eshte injejte
+        System.out.println(x == y);
+        System.out.println(x.equals(y));
+        //kur kemi assignment operator tek tipet refercen
+        //i bjen qe kemi marr adresen (kopju adresen memorike)
+
+
         y.increment(); //1+1
         System.out.println(x.getValue()); //cka shtypet ketu
-
-
 
 
         System.out.println("FUND");
@@ -26,9 +37,6 @@ public class CounterTest {
 
         Counter golaReal = new Counter();
         Counter golaBarceloan = new Counter();
-
-
-
 
 
         golaReal.increment();
