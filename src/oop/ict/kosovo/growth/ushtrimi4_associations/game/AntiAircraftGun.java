@@ -20,6 +20,7 @@ public class AntiAircraftGun {
     public void attack() {
         if (target != null) {
             double dmg = Math.random()*100;// 0..99
+            dmg += target.getDamage();
             target.setDamage((int)dmg);
         }
     }
@@ -30,6 +31,10 @@ public class AntiAircraftGun {
     }
 
     public void setDamage(int damage) {
-        this.damage = damage;
+        if (damage > MAX_DAMAGE) {
+            damage = MAX_DAMAGE;
+            //kur ti mesojm gabimet eshte dasht me gjujt naj gbaim naj excception
+        } else
+            this.damage = damage;
     }
 }
