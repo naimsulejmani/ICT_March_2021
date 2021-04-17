@@ -11,9 +11,9 @@ public class CourseTest {
         Student s5 = new Student(5, "Filan", "Fisteku");
 
 
-        Course javaCourse = new Course("JAVA", "Java and Android");
-        Course webCourse = new Course("WEB", "Web HTML, CSS, Javascript & JQuery");
-        Course cyberCourse = new Course("CYBER", "Cyber and Security");
+        Course javaCourse = new Course("JAVA", "Java and Android", 80);
+        Course webCourse = new Course("WEB", "Web HTML, CSS, Javascript & JQuery", 100);
+        Course cyberCourse = new Course("CYBER", "Cyber and Security", 50);
 
         javaCourse.enrollStudent(s1);
         javaCourse.enrollStudent(s2);

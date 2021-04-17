@@ -1,26 +1,35 @@
 package oop.ict.kosovo.growth.ushtrimi4_associations;
 
+import java.util.ArrayList;
+
 public class Course {
     private final String ID;
     private String name;
-    private final int MAX_STUDENTS = 100;
+    private final int MAX_STUDENTS;// = 100;
 
     //kur definojme nje varg me objekte tjetera
     //ateere lidhja eshte 1 me shume
-    private Student[] students;
-    private int numStudents;
+//    private Student[] students;
+//    private int numStudents;
 
-    public Course(String id, String name) {
+    private ArrayList<Student> students;
+
+    public Course(String id, String name, int maxStudents) {
         ID = id;
         this.name = name;
-        students = new Student[MAX_STUDENTS];
-        numStudents = 0;
+        MAX_STUDENTS = maxStudents;
+        //Student[] students = new Student[10] //MAX_STUDENTS
+        students = new ArrayList<>(MAX_STUDENTS); // nese nuk e vendosim kee max_Students ->
+        //default capacity e ka 10->
+//        students = new Student[MAX_STUDENTS];
+//        numStudents = 0;
     }
 
     //metoda e cila regjistron stundentin nese ka vende te lira
     public void enrollStudent(Student newStudent) {
-        if (numStudents < MAX_STUDENTS) {
-            students[numStudents++] = newStudent;
+        if (students.size() < MAX_STUDENTS) {
+            //students[numStudents++] = newStudent;
+            students.add(newStudent);
         } else {
             System.out.println("NO more free seat!");
         }
@@ -41,12 +50,13 @@ public class Course {
 
     //kthen se sa studenta jan regjistru ne kurs
     public int getTotalRegisteredStudents() {
-        return numStudents;
+        //return numStudents;
+        return students.size();
     }
 
     //kthen vendet e lira qe nuk jane plotesu
     public int getTotalFreeSeats() {
-        return MAX_STUDENTS - numStudents;
+        return MAX_STUDENTS - students.size();
     }
 
     public void print() {
@@ -54,7 +64,7 @@ public class Course {
         System.out.println("Course ID: " + ID);
         System.out.println("Course Name: " + name);
         System.out.println("MAX STUDENTS: " + MAX_STUDENTS);
-        System.out.println("Total Registered: " + numStudents);
+        System.out.println("Total Registered: " + students.size());
         System.out.println("Free Spots: " + getTotalFreeSeats());
     }
 
