@@ -1,15 +1,20 @@
 package labs.ict.kosovo.growth.model;
 
+import labs.ict.kosovo.growth.exceptions.ExpiredDateException;
+import labs.ict.kosovo.growth.exceptions.IllegalNegativeProductPriceException;
+
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
 public final class Drink extends Product {
-    public Drink(int id, String name, String description, BigDecimal price, LocalDate bestBefore, Rating rating) {
+    public Drink(int id, String name, String description, BigDecimal price, LocalDate bestBefore, Rating rating)
+    throws IllegalNegativeProductPriceException, ExpiredDateException
+    {
         super(id, name, description, price, bestBefore, rating);
     }
 
-    public Drink(int id, String name, BigDecimal price) {
+    public Drink(int id, String name, BigDecimal price) throws IllegalNegativeProductPriceException, ExpiredDateException{
         super(id, name, price);
     }
 
