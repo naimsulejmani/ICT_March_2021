@@ -1,0 +1,29 @@
+
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2021-04-26T16:57:14.223985400Z</date>
+  <millis>1619456234223</millis>
+  <nanos>985400</nanos>
+  <sequence>0</sequence>
+  <logger>oop.ict.kosovo.growth.ushtrimi7_loggingexceptions.logging.LoggerTest</logger>
+  <level>WARNING</level>
+  <class>oop.ict.kosovo.growth.ushtrimi7_loggingexceptions.logging.LoggerTest</class>
+  <method>main</method>
+  <thread>1</thread>
+  <message>Po ju paralajmeroj ne kete gabim</message>
+</record>
+<record>
+  <date>2021-04-26T16:57:14.261889200Z</date>
+  <millis>1619456234261</millis>
+  <nanos>889200</nanos>
+  <sequence>1</sequence>
+  <logger>oop.ict.kosovo.growth.ushtrimi7_loggingexceptions.logging.LoggerTest</logger>
+  <level>SEVERE</level>
+  <class>oop.ict.kosovo.growth.ushtrimi7_loggingexceptions.logging.LoggerTest</class>
+  <method>main</method>
+  <thread>1</thread>
+  <message>Ktu ska paralajmerim!!!!</message>
+</record>
+</log>
