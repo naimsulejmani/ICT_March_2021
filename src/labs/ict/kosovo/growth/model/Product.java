@@ -13,6 +13,8 @@ public class Product {
     private BigDecimal price; //priceNegativeExcption
     private LocalDate bestBefore; //afati i skadences
     private Rating rating;
+    //Liste me rating
+    //private ArrayList<Rating> ratings
 
     //konstruktor me te cilet mund te krijojme produkt
 
