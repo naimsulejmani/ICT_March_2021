@@ -17,8 +17,7 @@ public class Product {
     //konstruktor me te cilet mund te krijojme produkt
 
 
-    public Product(int id, String name, String description, BigDecimal price, LocalDate bestBefore, Rating rating)
-            throws IllegalNegativeProductPriceException, ExpiredDateException {
+    Product(int id, String name, String description, BigDecimal price, LocalDate bestBefore, Rating rating) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -29,7 +28,7 @@ public class Product {
         this.rating = rating;
     }
 
-    public Product(int id, String name, BigDecimal price) throws IllegalNegativeProductPriceException, ExpiredDateException {
+    Product(int id, String name, BigDecimal price) {
         this(id, name, null, price, LocalDate.now().plusMonths(1), Rating.NOT_RATED);
     }
 
@@ -58,9 +57,11 @@ public class Product {
         return price;
     }
 
-    public void setPrice(BigDecimal price) throws IllegalNegativeProductPriceException {
+    public void setPrice(BigDecimal price) {
         if (price.compareTo(BigDecimal.ZERO) < 0) {
-            throw new IllegalNegativeProductPriceException("Cmimi negative nuk lejohet!", price.doubleValue());
+            price = BigDecimal.ZERO;
+            //System.out.println("Nuk lejohet c");
+            //throw new IllegalNegativeProductPriceException("Cmimi negative nuk lejohet!", price.doubleValue());
         }
         this.price = price;
     }
@@ -69,12 +70,13 @@ public class Product {
         return bestBefore;
     }
 
-    public void setBestBefore(LocalDate bestBefore) throws ExpiredDateException {
+    public void setBestBefore(LocalDate bestBefore) {
         if (bestBefore.isBefore(LocalDate.now())) {
-            throw new ExpiredDateException("Ka skadu afati per kete produkt!");
+            // throw new ExpiredDateException("Ka skadu afati per kete produkt!");
             //System.out.println("i paska kalu afati ketij produkti");
             //exception throw new KaSkaduAfatiException();
             //return;//
+            System.out.println("Jeni duke shtuar Produkt me afat te skaduar!!!");
         }
         this.bestBefore = bestBefore;
     }
