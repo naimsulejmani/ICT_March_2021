@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String... args) {
         ArrayList list = new ArrayList();//Object[] elements = new Object[10]
         list.add(10); //0
         list.add("test");//1
