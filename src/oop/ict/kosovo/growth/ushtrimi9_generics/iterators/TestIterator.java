@@ -20,7 +20,5 @@ public class TestIterator {
         for (Iterator<String> iter = names.iterator(); iter.hasNext(); ) {
             System.out.println(iter.next());
         }
-
-
     }
 }
