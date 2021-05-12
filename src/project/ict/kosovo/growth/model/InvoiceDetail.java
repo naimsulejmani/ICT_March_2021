@@ -80,4 +80,10 @@ public class InvoiceDetail extends BaseAudit<String> implements TotalCalculateab
     public double getTotal() {
         return quantity * (1 - discount) * price;
     }
+
+    @Override
+    public String toString() {
+        return String.format("#%d - Produkti me nr. %d %10.2f %10.2f  %10.2f %15.2f",
+                id, productId, quantity, price, discount, getTotal());
+    }
 }

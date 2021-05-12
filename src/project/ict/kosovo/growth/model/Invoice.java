@@ -4,6 +4,8 @@ import project.ict.kosovo.growth.model.interfaces.TotalCalculateable;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Invoice extends BaseAudit<String> implements TotalCalculateable {
@@ -23,6 +25,7 @@ public class Invoice extends BaseAudit<String> implements TotalCalculateable {
         this.invoiceDate = invoiceDate;
         this.dueDate = dueDate;
         this.comment = comment;
+        this.details=new ArrayList<>();
     }
 
     public int getId() {
@@ -85,5 +88,20 @@ public class Invoice extends BaseAudit<String> implements TotalCalculateable {
             total += id.getTotal();
         }
         return total;
+    }
+
+    @Override
+    public String toString() {
+        String result = String.format("Invoice ID: %d%n", id);
+        result += String.format("Invoice Date: %s%n", invoiceDate);
+        result += String.format("Paguani deri me: %s%n", dueDate);
+        result += String.format("Konsumatori me numer %d%n", customerId);
+        result += "------------------------------------------------------\n";
+        for (InvoiceDetail detail : details) {
+            result += detail.toString()+"\n";
+        }
+        result += "------------------------------------------------------\n";
+        result += String.format("Total Invoice: %.2f%n", getTotal());
+        return result;
     }
 }
