@@ -1,8 +1,13 @@
 package labs.ict.kosovo.growth.model;
 
 import java.math.BigDecimal;
+import java.text.NumberFormat;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.util.ArrayList;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 public class ProductManager {
     //Listen e produkteve qe kemi me ruajt
@@ -40,21 +45,32 @@ public class ProductManager {
     }
 
     public void printAllProducts() {
-        System.out.printf("Total products: %d%n",products.size());
+        System.out.printf("Total products: %d%n", products.size());
         System.out.println("------------------------------------");
-        for(Product p: products) {
+        for (Product p : products) {
             System.out.println(p);
         }
     }
 
-    //duhet me be nje metode qe  e gjen produktin ne baze te id-se
-    //duhet te behet nje metode e cila mundeson vendosjen ne nje Review -> dhe ajo review e ka nje koment
-    //dhe ka nje rating te caktum
+    //detyra e saj eshte
+    // me lidhe localizimin (gjuhen) me njonen prej resource
+    //me lexu resource edhe me tentu me i fromatizu te dhanat tonat
+    public static class ResourceFormatter {
+        private Locale locale;
+        private ResourceBundle resources;
+        private DateTimeFormatter dateFormatter;
+        private NumberFormat moneyFormat;
 
+        public ResourceFormatter(Locale locale) {
+            this.locale = locale;
+            System.out.println(this.locale);
+            resources = ResourceBundle.getBundle("labs.ict.kosovo.growth.model.Resources");
+            dateFormatter = DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT).localizedBy(locale);
+            moneyFormat = NumberFormat.getCurrencyInstance(locale);
+        }
 
-
-
-
-
-
+        public String getText(String key) {
+            return resources.getString(key);
+        }
+    }
 }

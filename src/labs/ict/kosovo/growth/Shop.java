@@ -6,6 +6,7 @@ import labs.ict.kosovo.growth.model.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.Locale;
 
 public class Shop {
     public static void main(String[] args) {
@@ -22,6 +23,15 @@ public class Shop {
 
 
         manager.printAllProducts();
+
+        ProductManager.ResourceFormatter formatter = new ProductManager.ResourceFormatter(
+                new Locale("ru","RU")
+        );
+
+        System.out.println(formatter.getText("product"));
+
+
+
 //       try{
 //           Product p1 = new Product(1, "Monte Coko", "Shume e shijshme",
 //                   BigDecimal.valueOf(0.45d), LocalDate.of(2022, 5, 1), Rating.FOUR_STAR);
