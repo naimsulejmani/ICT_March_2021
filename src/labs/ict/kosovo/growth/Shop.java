@@ -25,7 +25,7 @@ public class Shop {
         manager.printAllProducts();
 
         ProductManager.ResourceFormatter formatter = new ProductManager.ResourceFormatter(
-                new Locale("ru","RU")
+                new Locale("en","US")
         );
 
         System.out.println(formatter.getText("product"));

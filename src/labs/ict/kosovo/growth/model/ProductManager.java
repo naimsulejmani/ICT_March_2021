@@ -63,8 +63,7 @@ public class ProductManager {
 
         public ResourceFormatter(Locale locale) {
             this.locale = locale;
-            System.out.println(this.locale);
-            resources = ResourceBundle.getBundle("labs.ict.kosovo.growth.model.Resources");
+            resources = ResourceBundle.getBundle("labs.ict.kosovo.growth.model.Resources", locale);
             dateFormatter = DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT).localizedBy(locale);
             moneyFormat = NumberFormat.getCurrencyInstance(locale);
         }
