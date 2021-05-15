@@ -11,7 +11,7 @@ import java.util.Locale;
 public class Shop {
     public static void main(String[] args) {
 
-        ProductManager manager = new ProductManager("en-US");
+        ProductManager manager = new ProductManager("sq-AL");
 
         Product p1 = manager.createDrink(1, "Coca Cola 2l", "Mos e pini vet!",
                 BigDecimal.valueOf(1.50d), LocalDate.of(2021, 12, 31), Rating.FOUR_STAR);
@@ -24,11 +24,11 @@ public class Shop {
 
         manager.printAllProducts();
 
-        ProductManager.ResourceFormatter formatter = new ProductManager.ResourceFormatter(
-                new Locale("en","US")
-        );
-
-        System.out.println(formatter.getText("product"));
+//        ProductManager.ResourceFormatter formatter = new ProductManager.ResourceFormatter(
+//                new Locale("en","US")
+//        );
+//
+//        System.out.println(formatter.getText("product"));
 
 
 

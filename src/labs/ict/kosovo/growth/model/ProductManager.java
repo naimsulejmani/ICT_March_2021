@@ -1,6 +1,7 @@
 package labs.ict.kosovo.growth.model;
 
 import java.math.BigDecimal;
+import java.text.MessageFormat;
 import java.text.NumberFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -16,10 +17,15 @@ public class ProductManager {
     //kemi me perdore me kriju produkt
     //kemi me perdore per me gjeneru raporte te ndryshme
     private ArrayList<Product> products = new ArrayList<>();
+    private ResourceFormatter formatter;
+
+
     String language = "en-US";
 
     public ProductManager(String language) {
         this.language = language;
+        String[] arr = language.split("-");
+        formatter = new ResourceFormatter(new Locale(arr[0], arr[1]));
     }
 
     public Product createFood(int id, String name, String description, BigDecimal price,
@@ -45,30 +51,40 @@ public class ProductManager {
     }
 
     public void printAllProducts() {
-        System.out.printf("Total products: %d%n", products.size());
+        System.out.printf("%s: %d%n",formatter.getText("totalProductsLabel"), products.size());
         System.out.println("------------------------------------");
         for (Product p : products) {
-            System.out.println(p);
+            System.out.println(formatter.formatProduct(p));
         }
     }
 
     //detyra e saj eshte
     // me lidhe localizimin (gjuhen) me njonen prej resource
     //me lexu resource edhe me tentu me i fromatizu te dhanat tonat
-    public static class ResourceFormatter {
+    private static class ResourceFormatter {
         private Locale locale;
         private ResourceBundle resources;
         private DateTimeFormatter dateFormatter;
         private NumberFormat moneyFormat;
 
-        public ResourceFormatter(Locale locale) {
+        private ResourceFormatter(Locale locale) {
             this.locale = locale;
             resources = ResourceBundle.getBundle("labs.ict.kosovo.growth.model.Resources", locale);
             dateFormatter = DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT).localizedBy(locale);
             moneyFormat = NumberFormat.getCurrencyInstance(locale);
         }
 
-        public String getText(String key) {
+        private String formatProduct(Product product) {
+            return MessageFormat.format(resources.getString("product"),
+                    product.getId(),
+                    product.getName(),
+                    moneyFormat.format(product.getPrice()),
+                    dateFormatter.format(product.getBestBefore()),
+                    product.getRating().getStars()
+            );
+        }
+
+        private String getText(String key) {
             return resources.getString(key);
         }
     }
