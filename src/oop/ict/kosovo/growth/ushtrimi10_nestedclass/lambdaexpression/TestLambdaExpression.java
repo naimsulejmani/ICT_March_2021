@@ -11,6 +11,8 @@ public class TestLambdaExpression {
         students.add(new Student(1, "Mentor Iliazi", 9.75d));
         students.add(new Student(2, "Flamur Gashi", 6.1d));
         students.add(new Student(3, "Elfete Totaj", 9.90d));
+        students.add(new Student(5, "Abdurrahman Sulejmani", 9.90d));
+        students.add(new Student(6, "Filan Fisteku", 6.1d));
         Student naimi = new Student(4, "Naim Sulejmani", 7.75d);
         students.add(naimi);
 

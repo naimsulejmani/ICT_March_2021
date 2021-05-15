@@ -37,4 +37,8 @@ public class Student {
         this.averageGrade = averageGrade;
     }
 
+    @Override
+    public String toString() {
+        return String.format("%d - %s %.2f", id, name, averageGrade);
+    }
 }
