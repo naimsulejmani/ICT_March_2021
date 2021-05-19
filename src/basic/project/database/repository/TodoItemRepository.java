@@ -12,8 +12,8 @@ import java.util.List;
 
 public class TodoItemRepository implements RepositoryBase<TodoItem, Integer> {
 
-    private static String connectionString =
-            "jdbc:sqlserver://localhost:1433;databaseName=TodoTask;user=ictuser;password=123456";
+//    private static String connectionString =
+//            "jdbc:sqlserver://localhost:1433;databaseName=TodoTask;user=ictuser;password=123456";
 
     @Override
     public boolean add(TodoItem item) {
@@ -22,7 +22,7 @@ public class TodoItemRepository implements RepositoryBase<TodoItem, Integer> {
         Statement statement = null;
 
         try {
-            connection = DriverManager.getConnection(connectionString);//provo me u konektu
+            connection = DataConnection.getConnection();//DriverManager.getConnection(connectionString);//provo me u konektu
             statement = connection.createStatement();//krijo nje sql deklarate
             String sqlInsertQuery =
                     String.format("INSERT INTO dbo.TodoItems(Name, Description,InsertBy) VALUES ('%s','%s','%s');",
@@ -61,19 +61,30 @@ public class TodoItemRepository implements RepositoryBase<TodoItem, Integer> {
 
     @Override
     public boolean remove(TodoItem item) {
-        return false;
+        return removeById(item.getId());
     }
 
     @Override
     public boolean removeById(Integer id) {
-        return false;
+        String sqlQuery = "{CALL dbo.usp_TodoItems_DeleteById (?) }";
+        try (Connection connection = DataConnection.getConnection();
+             CallableStatement statement = connection.prepareCall(sqlQuery)
+        ) {
+            statement.setInt(1, id);
+            int rowAffected = statement.executeUpdate();
+            return rowAffected > 0;
+
+        } catch (SQLException throwables) {
+            System.out.println(throwables.getMessage());
+            return false;
+        }
     }
 
     @Override
     public TodoItem get(Integer id) {
         TodoItem item = null;
         String sqlQuery = "EXEC dbo.usp_TodoItems_Get ?";
-        try (Connection connection = DriverManager.getConnection(connectionString);
+        try (Connection connection = DataConnection.getConnection();//DriverManager.getConnection(connectionString);
              PreparedStatement statement = connection.prepareStatement(sqlQuery)) {
             statement.setInt(1, id);
             ResultSet result = statement.executeQuery();
@@ -93,7 +104,7 @@ public class TodoItemRepository implements RepositoryBase<TodoItem, Integer> {
         List<TodoItem> items = null;
         String sqlQuery = "EXEC dbo.usp_TodoItems_Get";
         //try with resource parameters -> objekte interface autoclosable
-        try (Connection connection = DriverManager.getConnection(connectionString);
+        try (Connection connection = DataConnection.getConnection();//DriverManager.getConnection(connectionString);
              PreparedStatement statement = connection.prepareStatement(sqlQuery)) {
             ResultSet result = statement.executeQuery();
             items = new ArrayList<>();

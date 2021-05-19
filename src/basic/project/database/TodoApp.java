@@ -9,14 +9,14 @@ public class TodoApp {
         TodoItemRepository repository = new TodoItemRepository();
 
         //test insert new item
-//        TodoItem newItem = new TodoItem("Create TodoApp Mini Project", "naimsulejmani");
-//        newItem.setDescription("Create a simple app  to learn a CRUD techniques using JDBC");
-//
-//        boolean isRegistered = repository.add(newItem);
-//        if (isRegistered)
-//            System.out.println("New Item succesfully registered!");
-//        else
-//            System.out.println("Failed to register!!!!");
+        TodoItem newItem = new TodoItem("Create TodoApp Mini Project", "naimsulejmani");
+        newItem.setDescription("Create a simple app  to learn a CRUD techniques using JDBC");
+
+        boolean isRegistered = repository.add(newItem);
+        if (isRegistered)
+            System.out.println("New Item succesfully registered!");
+        else
+            System.out.println("Failed to register!!!!");
 
 
         //test get todo item
@@ -30,6 +30,13 @@ public class TodoApp {
             System.out.println(item);
             System.out.println("------------------------------------");
         }
+
+
+        //test delete by id
+//        boolean isDeleted = repository.removeById(2);
+//        if(isDeleted)
+//            System.out.println("U fshi");
+//        else System.out.println("nuk mundet te fshihet!!!");
 
     }
 }
