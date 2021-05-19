@@ -6,6 +6,7 @@ import basic.project.database.models.TodoItem;
 import java.sql.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -77,18 +78,7 @@ public class TodoItemRepository implements RepositoryBase<TodoItem, Integer> {
             statement.setInt(1, id);
             ResultSet result = statement.executeQuery();
             if (result.next()) {
-                String name = result.getNString("Name");
-                String description = result.getNString("Description");
-                LocalDate date = result.getDate("DueDate").toLocalDate();
-                boolean isCompleted = result.getBoolean("IsCompleted");
-                LocalDateTime insertDate = result.getObject("InsertDate", LocalDateTime.class);
-                String insertBy = result.getString("InsertBy");
-                LocalDateTime updateDate = result.getObject("UpdateDate", LocalDateTime.class);
-                String updateBy = result.getString("UpdateBy");
-                int updateNo = result.getInt("UpdateNo");
-
-                item = new TodoItem(id, name, description, date, isCompleted, insertDate, insertBy,
-                        updateDate, updateBy, updateNo);
+                item = toObject(result);
             }
             return item;
 
@@ -100,6 +90,38 @@ public class TodoItemRepository implements RepositoryBase<TodoItem, Integer> {
 
     @Override
     public List<TodoItem> getAll() {
-        return null;
+        List<TodoItem> items = null;
+        String sqlQuery = "EXEC dbo.usp_TodoItems_Get";
+        //try with resource parameters -> objekte interface autoclosable
+        try (Connection connection = DriverManager.getConnection(connectionString);
+             PreparedStatement statement = connection.prepareStatement(sqlQuery)) {
+            ResultSet result = statement.executeQuery();
+            items = new ArrayList<>();
+            while (result.next()) {
+                TodoItem item = toObject(result);
+                items.add(item);
+//                items.add(toObject(result));
+            }
+            return items;
+        } catch (SQLException throwables) {
+            System.out.println(throwables.getMessage());
+            return items;
+        }
+    }
+
+    private TodoItem toObject(ResultSet result) throws SQLException {
+        int id = result.getInt("Id");
+        String name = result.getNString("Name");
+        String description = result.getNString("Description");
+        LocalDate date = result.getDate("DueDate").toLocalDate();
+        boolean isCompleted = result.getBoolean("IsCompleted");
+        LocalDateTime insertDate = result.getObject("InsertDate", LocalDateTime.class);
+        String insertBy = result.getString("InsertBy");
+        LocalDateTime updateDate = result.getObject("UpdateDate", LocalDateTime.class);
+        String updateBy = result.getString("UpdateBy");
+        int updateNo = result.getInt("UpdateNo");
+
+        return new TodoItem(id, name, description, date, isCompleted, insertDate, insertBy,
+                updateDate, updateBy, updateNo);
     }
 }
