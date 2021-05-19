@@ -11,16 +11,12 @@ public class TestConnection {
 
         try {
 //            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-
             String connectionUrl = "jdbc:sqlserver://localhost:1433;databaseName=Test;user=ictuser;password=123456";
             Connection connection = DriverManager.getConnection(connectionUrl);
             System.out.println("Urime jeni konektuar ne SQL Databazen e specifikuar!");
-
             String sqlQuery = "INSERT INTO topic VALUES ('A','Char A','ShkronjaA')";
-
             Statement statement = connection.createStatement();
             int rowAffected = statement.executeUpdate(sqlQuery);
-
             System.out.printf("(%d) row affected%n", rowAffected);
             statement.close();//finally
             connection.close();//finally
