@@ -3,10 +3,9 @@ package basic.project.database.repository;
 import basic.project.database.interfaces.RepositoryBase;
 import basic.project.database.models.TodoItem;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 
@@ -43,7 +42,7 @@ public class TodoItemRepository implements RepositoryBase<TodoItem, Integer> {
                     throwables.printStackTrace();
                 }
             }
-            if(connection!=null) {
+            if (connection != null) {
                 try {
                     connection.close();
                 } catch (SQLException throwables) {
@@ -51,7 +50,7 @@ public class TodoItemRepository implements RepositoryBase<TodoItem, Integer> {
                 }
             }
         }
-
+        //vazhdojme ne oren 19:00
     }
 
     @Override
@@ -71,7 +70,32 @@ public class TodoItemRepository implements RepositoryBase<TodoItem, Integer> {
 
     @Override
     public TodoItem get(Integer id) {
-        return null;
+        TodoItem item = null;
+        String sqlQuery = "EXEC dbo.usp_TodoItems_Get ?";
+        try (Connection connection = DriverManager.getConnection(connectionString);
+             PreparedStatement statement = connection.prepareStatement(sqlQuery)) {
+            statement.setInt(1, id);
+            ResultSet result = statement.executeQuery();
+            if (result.next()) {
+                String name = result.getNString("Name");
+                String description = result.getNString("Description");
+                LocalDate date = result.getDate("DueDate").toLocalDate();
+                boolean isCompleted = result.getBoolean("IsCompleted");
+                LocalDateTime insertDate = result.getObject("InsertDate", LocalDateTime.class);
+                String insertBy = result.getString("InsertBy");
+                LocalDateTime updateDate = result.getObject("UpdateDate", LocalDateTime.class);
+                String updateBy = result.getString("UpdateBy");
+                int updateNo = result.getInt("UpdateNo");
+
+                item = new TodoItem(id, name, description, date, isCompleted, insertDate, insertBy,
+                        updateDate, updateBy, updateNo);
+            }
+            return item;
+
+        } catch (SQLException throwables) {
+            System.out.println(throwables.getMessage());
+            return item;
+        }
     }
 
     @Override
