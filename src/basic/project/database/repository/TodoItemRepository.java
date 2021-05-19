@@ -52,8 +52,6 @@ public class TodoItemRepository implements RepositoryBase<TodoItem, Integer> {
             }
         }
 
-
-        return false;
     }
 
     @Override
