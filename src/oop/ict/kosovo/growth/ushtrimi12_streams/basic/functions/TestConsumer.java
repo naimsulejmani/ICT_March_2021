@@ -9,6 +9,7 @@ public class TestConsumer {
         Consumer<Product> productToConsume = new Consumer<Product>() {
             @Override
             public void accept(Product product) {
+
                 System.out.println("Sa eshte cmimi i produktit");
                 System.out.println(product);
                 System.out.println("A ban pak am lire");
