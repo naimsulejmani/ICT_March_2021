@@ -1,6 +1,8 @@
 package oop.ict.kosovo.growth.ushtrimi12_streams.basic;
 
 import java.util.Arrays;
+import java.util.function.Consumer;
+import java.util.function.Predicate;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
@@ -24,6 +26,18 @@ public class BasicStreamExample {
 
         Arrays.stream(array).filter(p -> p.getPrice() < 90).forEach(p -> p.setDiscount(0.15));
 
+        //me anonymous class
+        Arrays.stream(array).filter(new Predicate<Product>() {
+            @Override
+            public boolean test(Product product) {
+                return product.getPrice()<90;
+            }
+        }).forEach(new Consumer<Product>() {
+            @Override
+            public void accept(Product product) {
+                product.setDiscount(0.15);
+            }
+        });
 
     }
 }
