@@ -5,6 +5,9 @@ import labs.ict.kosovo.growth.exceptions.IllegalNegativeProductPriceException;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.OptionalDouble;
 
 public class Product {
     private int id;
@@ -13,6 +16,7 @@ public class Product {
     private BigDecimal price; //priceNegativeExcption
     private LocalDate bestBefore; //afati i skadences
     private Rating rating;
+    private List<Review> reviews;
     //Liste me rating
     //private ArrayList<Rating> ratings
 
@@ -28,6 +32,7 @@ public class Product {
         //this.price = price;
         //this.bestBefore = bestBefore;
         this.rating = rating;
+        this.reviews = new ArrayList<>();
     }
 
     Product(int id, String name, BigDecimal price) {
@@ -84,12 +89,17 @@ public class Product {
     }
 
     public Rating getRating() {
-        return rating;
+
+        OptionalDouble avg = reviews.stream().mapToInt(r -> r.getRating().ordinal()).average();
+        if (avg.isPresent())
+            return Rating.values()[(int) Math.ceil(avg.getAsDouble())];
+        else return Rating.NOT_RATED;
+        //return rating;
     }
 
-    public void setRating(Rating rating) {
-        this.rating = rating;
-    }
+//    public void setRating(Rating rating) {
+//        this.rating = rating;
+//    }
 
     @Override
     public String toString() {
@@ -100,5 +110,13 @@ public class Product {
 
     public BigDecimal getDiscount() {
         return BigDecimal.ZERO;
+    }
+
+    public List<Review> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(List<Review> reviews) {
+        this.reviews = reviews;
     }
 }
