@@ -1,14 +1,25 @@
 package oop.ict.kosovo.growth.ushtrimi12_streams.basic;
 
+import java.time.LocalDate;
+
 public class Product {
     private int id;
     private String name;
     private double price;
 
+    private LocalDate bestBefore;
+
     public Product(int id, String name, double price) {
         this.id = id;
         this.name = name;
         this.price = price;
+    }
+
+    public Product(int id, String name, double price, LocalDate bestBefore) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+        this.bestBefore = bestBefore;
     }
 
     public int getId() {
@@ -40,6 +51,14 @@ public class Product {
         if (discount > 1 || discount < 0) return;
         //azhurno cmimin pas zbritjes
         this.price = this.price - this.price * discount;
+    }
+
+    public LocalDate getBestBefore() {
+        return bestBefore;
+    }
+
+    public void setBestBefore(LocalDate bestBefore) {
+        this.bestBefore = bestBefore;
     }
 
     @Override
