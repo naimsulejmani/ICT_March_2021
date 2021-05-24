@@ -91,6 +91,7 @@ public class Product {
     public Rating getRating() {
 
         OptionalDouble avg = reviews.stream().mapToInt(r -> r.getRating().ordinal()).average();
+        //reviews.stream().filter(r -> r.getRating() != Rating.NOT_RATED).mapToInt(r -> r.getRating().ordinal()).sum()/review.length
         if (avg.isPresent())
             return Rating.values()[(int) Math.ceil(avg.getAsDouble())];
         else return Rating.NOT_RATED;
