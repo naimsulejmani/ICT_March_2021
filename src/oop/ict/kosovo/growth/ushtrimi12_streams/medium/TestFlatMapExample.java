@@ -1,7 +1,10 @@
 package oop.ict.kosovo.growth.ushtrimi12_streams.medium;
 
+import oop.ict.kosovo.growth.ushtrimi9_generics.w3school.Option;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.function.BiPredicate;
 import java.util.function.Function;
 import java.util.stream.Stream;
@@ -12,7 +15,7 @@ public class TestFlatMapExample {
 
         Student s1 = new Student();
         s1.id = 1;
-        s1.name = "Mentor Ilazi";
+        s1.name = "AB";
 
         s1.subjects.add(new Subject(1, "Java Basic"));
 
@@ -22,7 +25,7 @@ public class TestFlatMapExample {
 
         Student s2 = new Student();
         s2.id = 2;
-        s2.name = "Edison Boqaj";
+        s2.name = "AB";
         s2.subjects.add(new Subject(3, "Java Advance"));
         s2.subjects.add(subject2);
 
@@ -42,7 +45,14 @@ public class TestFlatMapExample {
                 = (student, subject) -> student.subjects.contains(subject);
 
 
-        students.stream().flatMap((s)->s.subjects.stream()).filter(s->s.name.contains("Advance"))
+        students.stream().flatMap((s) -> s.subjects.stream()).filter(s -> s.name.contains("Advance"))
                 .forEach(System.out::println);
+
+        Optional<Student> firstStudent = students.stream().findFirst();
+        Optional<Student> anyStudent = students.stream().findAny();
+        System.out.println(firstStudent.get().id);
+        System.out.println(anyStudent.get().id);
+
+
     }
 }
