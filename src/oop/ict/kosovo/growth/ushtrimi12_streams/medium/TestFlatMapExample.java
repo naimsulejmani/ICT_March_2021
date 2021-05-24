@@ -3,8 +3,10 @@ package oop.ict.kosovo.growth.ushtrimi12_streams.medium;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.BiPredicate;
+import java.util.function.Function;
+import java.util.stream.Stream;
 
-public class TestBiPredicateExample {
+public class TestFlatMapExample {
     public static void main(String[] args) {
         List<Student> students = new ArrayList<>();
 
@@ -40,5 +42,7 @@ public class TestBiPredicateExample {
                 = (student, subject) -> student.subjects.contains(subject);
 
 
+        students.stream().flatMap((s)->s.subjects.stream()).filter(s->s.name.contains("Advance"))
+                .forEach(System.out::println);
     }
 }

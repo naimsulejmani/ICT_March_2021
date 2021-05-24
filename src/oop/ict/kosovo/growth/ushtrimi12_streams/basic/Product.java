@@ -63,6 +63,6 @@ public class Product {
 
     @Override
     public String toString() {
-        return String.format("%d - %s: %.2f%n", id, name, price);
+        return String.format("%d - %s: %.2f%n, use before: %s", id, name, price, bestBefore);
     }
 }
