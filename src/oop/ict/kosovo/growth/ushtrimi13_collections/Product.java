@@ -2,7 +2,7 @@ package oop.ict.kosovo.growth.ushtrimi13_collections;
 
 import java.util.Objects;
 
-public class Product {
+public class Product implements Comparable<Product> {
     private static int autoId = 0;
     private int id;
     private String name;
@@ -31,6 +31,11 @@ public class Product {
     @Override
     public String toString() {
         return String.format("%d - %s", id, name);
+    }
+
+    @Override
+    public int compareTo(Product other) {
+        return this.name.compareTo(other.name);
     }
 
 //    @Override
