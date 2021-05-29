@@ -1,8 +1,9 @@
 package oop.ict.kosovo.growth.ushtrimi13_collections;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Product implements Comparable<Product> {
+public class Product implements Comparable<Product>, Serializable {
     private static int autoId = 0;
     private int id;
     private String name;
