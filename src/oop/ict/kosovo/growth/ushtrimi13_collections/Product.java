@@ -1,5 +1,7 @@
 package oop.ict.kosovo.growth.ushtrimi13_collections;
 
+import java.util.Objects;
+
 public class Product {
     private static int autoId = 0;
     private int id;
@@ -30,4 +32,15 @@ public class Product {
     public String toString() {
         return String.format("%d - %s", id, name);
     }
+
+//    @Override
+//    public int hashCode() {
+//        return name.length();
+//    }
+
+//    @Override
+//    public boolean equals(Object o) {
+//        Product product = (Product) o;
+//        return this.hashCode() == product.hashCode();
+//    }
 }
