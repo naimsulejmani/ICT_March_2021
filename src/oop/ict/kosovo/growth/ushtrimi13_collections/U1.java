@@ -27,11 +27,16 @@ public class U1 {
         List<Product> list4 = new ArrayList<>();
         list4.addAll(productSet);
 
+        List<Product> list5 = List.of(p1,p2,new Product("A"), new Product("B"));
+
         System.out.println(list1.size());
         System.out.println(list2.size());
         System.out.println(list3.size());
         System.out.println("SET = " + productSet.size());
         System.out.println(list4.size());
+
+        p1.setName("Caj mente");
+        System.out.println(list5.size());
 
 
     }
