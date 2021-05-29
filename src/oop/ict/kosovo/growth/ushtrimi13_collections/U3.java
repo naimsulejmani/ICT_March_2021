@@ -16,10 +16,16 @@ public class U3 {
         set1.add(p1);
         set1.add(new Product("Buke"));
         set1.add(new Product("Uje"));
+
         Set<Product> set2 = new HashSet<>(set1);
 
         Set<Product> set3 = Set.of(p1, p2, new Product("A"), new Product("A"));
 
+
+        set1.stream().forEach(System.out::println);
+        set1.removeAll(set3);
+        System.out.println("--------AFTER REMOVE----------");
+        set1.stream().forEach(System.out::println);
 
         System.out.println("SET 1 = " + set1.size());
         System.out.println("SET 2 = " + set2.size());
