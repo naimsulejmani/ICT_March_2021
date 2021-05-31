@@ -1,6 +1,6 @@
 package oop.ict.kosovo.growth.ushtrimi15_reflections;
 
-import oop.ict.kosovo.growth.ushtrimi5_inheritance.Test;
+//import oop.ict.kosovo.growth.ushtrimi5_inheritance.Test;
 
 import java.time.LocalDate;
 
@@ -41,6 +41,18 @@ public class TestSimple1 {
 
             Class interfaceClass = My.class;
             System.out.println("Is an Interface an interface: " + interfaceClass.isInterface());
+
+
+            Class longArrayClass = long[].class;
+            Class simpleArrayClass = Simple[].class;
+            Class doubleArrayClass = Class.forName("[D");
+            Class string2DClass = String[][].class;
+            Class string2dClass1 = Class.forName("[[Ljava.lang.String;");
+
+            System.out.println(string2DClass.getName());
+            System.out.println(string2DClass.isArray());
+
+
 
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
