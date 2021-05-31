@@ -5,10 +5,11 @@ public class Monitor {
     protected String model;
     String description;
     public double price;
-
     public Monitor() {
     }
 
+    //access modifier, nje emer (construcotr) liste me parametera
+    // ka tipin e vet, edhe default, mundet me pass annotations
     public Monitor(int id, String model, String description, double price) {
         this.id = id;
         this.model = model;
@@ -33,6 +34,7 @@ public class Monitor {
         return model;
     }
 
+    //REFLECTION -> CLASS<T>, METHOD, FIELD, CONSTRUCTOR,...
     public void setModel(String model) {
         this.model = model;
     }

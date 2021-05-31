@@ -18,6 +18,13 @@ public class MonitorReflection {
                     field.getType(), field.getName());
         }
 
+        System.out.println("<select>");
+        for (Field field : declaredFields) {
+            System.out.printf("<option value='%s'>%s</option>%n", field.getName(), field.getName());
+        }
+        System.out.println("</select>");
+
+
         Field priceField = monitorClass.getField("price");
 
         System.out.println(priceField.getName());
