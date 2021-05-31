@@ -13,7 +13,7 @@ public class TestSimple1 {
             Class c = Class.forName("oop.ict.kosovo.growth.ushtrimi15_reflections.Simple");
             //tash mundemi me manevru klasen simple
             System.out.println(c.getName());
-            Simple simple = new Simple();
+            Simple simple = new Simple("");
             TestSimple1 t1 = new TestSimple1();
             printName(simple);
             printName(t1);

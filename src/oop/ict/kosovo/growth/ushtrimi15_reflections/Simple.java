@@ -1,7 +1,13 @@
 package oop.ict.kosovo.growth.ushtrimi15_reflections;
 
 public class Simple {
+    private String text;
+
+    public Simple(String text) {
+        this.text = text;
+    }
+
     void message() {
-        System.out.println("Hello ICT!");
+        System.out.println("Text = " + text);
     }
 }

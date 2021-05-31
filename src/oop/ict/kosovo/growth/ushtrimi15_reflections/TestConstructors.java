@@ -7,6 +7,7 @@ public class TestConstructors {
             Object o = c.newInstance();
             System.out.println(o);
 
+
             if (o instanceof Simple) {
                 Simple simple = (Simple) o;
                 simple.message();
