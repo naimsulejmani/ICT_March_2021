@@ -10,4 +10,8 @@ public class Simple {
     void message() {
         System.out.println("Text = " + text);
     }
+
+    void message(String message) {
+        System.out.println(text + " -> " + message);
+    }
 }
