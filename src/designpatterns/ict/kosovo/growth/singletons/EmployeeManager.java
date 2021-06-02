@@ -6,6 +6,7 @@ import java.util.List;
 public class EmployeeManager {
 
     private static EmployeeManager instance;
+
     private EmployeeManager() {
     }
 
@@ -19,9 +20,11 @@ public class EmployeeManager {
     }
 
     List<String> employeeNames = new ArrayList<>();
+
     public void add(String name) {
         employeeNames.add(name);
     }
+
     //.... other methods here
     public void printAll() {
         employeeNames.stream().forEach(System.out::println);
